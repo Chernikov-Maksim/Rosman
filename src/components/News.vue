@@ -1,16 +1,15 @@
 <template>
   <section class="news">
-    <div class="wrapper">
-      <div class="px-6">
-        <div class="flex justify-between items-center mb-10">
-          <title-h2>Новости</title-h2>
-          <div class="flex gap-x-34">
-            <button
-              class="border-b-def border-black text-ordinary font-normal leading-5"
-            >
-              Смотреть все
-            </button>
-            <div class="flex gap-x-34">
+    <div class="news-wrapper">
+      <div class="news-container">
+        <div class="row">
+          <div class="column">
+            <title-h2>Новости</title-h2>
+            <button class="watch-all active">Смотреть все</button>
+          </div>
+          <div class="row-item">
+            <button class="watch-all">Смотреть все</button>
+            <div class="switches">
               <div ref="prev" class="swiper-button-prev">
                 <img src="../../public/images/news/prev.svg" alt="prev" />
               </div>
@@ -26,7 +25,6 @@
               prevEl: prev,
               nextEl: next,
             }"
-            :slidesPerView="3"
             :spaceBetween="16"
             :cssMode="true"
             :pagination="true"
@@ -34,129 +32,39 @@
             :keyboard="true"
             :modules="modules"
             class="mySwiper"
+            :breakpoints="{
+              '851': {
+                slidesPerView: 3,
+              },
+              '850': {
+                slidesPerView: 1,
+              },
+              '640': {
+                slidesPerView: 1,
+              },
+              '500': {
+                slidesPerView: 1,
+              },
+              '320': {
+                slidesPerView: 1,
+              },
+            }"
           >
-            <swiper-slide>
-              <div class="flex-col text-left">
-                <img src="../../public/images/news/frame.jpg" alt="frame" />
-                <div
-                  class="pt-4 pr-3 pb-8 pl-3 border-r-def border-b-def border-l-def border-[#D9D9D9]"
-                >
-                  <div class="flex items-center gap-x-2 mb-3">
-                    <span class="text-mini font-medium uppercase tracking-wider"
-                      >статьи</span
-                    >
-                    <span>•</span>
-                    <span class="text-mini font-medium text-text-gray"
-                      >30.11.2022</span
-                    >
+            <swiper-slide v-for="(slide, index) in slides" :key="index">
+              <div class="swiper-cards">
+                <img :src="slide.image" alt="frame" />
+                <div class="cards-content">
+                  <div class="test">
+                    <div class="box-text">
+                      <span class="articles">статьи</span>
+                      <span>•</span>
+                      <span class="date">{{ slide.date }}</span>
+                    </div>
+                    <p class="punch-title">{{ slide.title }}</p>
+                    <p class="sub-title">
+                      {{ slide.subtitle }}
+                    </p>
                   </div>
-                  <p class="text-ordinary font-medium leading-5 mb-4">
-                    Эпик Лончер: Так блейд Инфинити Надо еще не баттлил!
-                  </p>
-                  <p class="text-ordinary leading-5">
-                    Пусковые установки Эпик Лончер подарят совершенно новый опыт
-                    запуска волчка на арену даже самому умелому Игроку!
-                  </p>
-                </div>
-              </div>
-            </swiper-slide>
-            <swiper-slide>
-              <div class="flex-col text-left">
-                <img src="../../public/images/news/frameTwo.jpg" alt="frame" />
-                <div
-                  class="pt-4 pr-3 pb-8 pl-3 border-r-def border-b-def border-l-def border-gray"
-                >
-                  <div class="flex items-center gap-x-2 mb-3">
-                    <span class="text-mini font-medium uppercase tracking-wider"
-                      >статьи</span
-                    >
-                    <span> •</span>
-                    <span class="text-mini font-medium text-[#808080]"
-                      >30.11.2022</span
-                    >
-                  </div>
-                  <p class="text-ordinary font-medium leading-5 mb-4">
-                    Эпик Лончер: Так блейд Инфинити Надо еще не баттлил!
-                  </p>
-                  <p class="text-ordinary leading-5">
-                    Пусковые установки Эпик Лончер подарят совершенно новый опыт
-                    запуска волчка на арену даже самому умелому Игроку!
-                  </p>
-                </div>
-              </div>
-            </swiper-slide>
-            <swiper-slide>
-              <div class="flex-col text-left">
-                <img src="../../public/images/news/frameThree.jpg" alt="frame" />
-                <div
-                  class="pt-4 pr-3 pb-8 pl-3 border-r-def border-b-def border-l-def border-[#D9D9D9]"
-                >
-                  <div class="flex items-center gap-x-2 mb-3">
-                    <span class="text-mini font-medium uppercase tracking-wider"
-                      >статьи</span
-                    >
-                    <span>•</span>
-                    <span class="text-mini font-medium text-[#808080]"
-                      >30.11.2022</span
-                    >
-                  </div>
-                  <p class="text-ordinary font-medium leading-5 mb-4">
-                    Эпик Лончер: Так блейд Инфинити Надо еще не баттлил!
-                  </p>
-                  <p class="text-ordinary leading-5">
-                    Пусковые установки Эпик Лончер подарят совершенно новый опыт
-                    запуска волчка на арену даже самому умелому Игроку!
-                  </p>
-                </div>
-              </div>
-            </swiper-slide>
-            <swiper-slide>
-              <div class="flex-col text-left">
-                <img src="../../public/images/news/frame.jpg" alt="frame" />
-                <div
-                  class="pt-4 pr-3 pb-8 pl-3 border-r-def border-b-def border-l-def border-[#D9D9D9]"
-                >
-                  <div class="flex items-center gap-x-2 mb-3">
-                    <span class="text-mini font-medium uppercase tracking-wider"
-                      >статьи</span
-                    >
-                    <span> •</span>
-                    <span class="text-mini font-medium text-[#808080]"
-                      >30.11.2022</span
-                    >
-                  </div>
-                  <p class="text-ordinary font-medium leading-5 mb-4">
-                    Эпик Лончер: Так блейд Инфинити Надо еще не баттлил!
-                  </p>
-                  <p class="text-ordinary leading-5">
-                    Пусковые установки Эпик Лончер подарят совершенно новый опыт
-                    запуска волчка на арену даже самому умелому Игроку!
-                  </p>
-                </div>
-              </div>
-            </swiper-slide>
-            <swiper-slide>
-              <div class="flex-col text-left">
-                <img src="../../public/images/news/frame.jpg" alt="frame" />
-                <div
-                  class="pt-4 pr-3 pb-8 pl-3 border-r-def border-b-def border-l-def border-[#D9D9D9]"
-                >
-                  <div class="flex items-center gap-x-2 mb-3">
-                    <span class="text-mini font-medium uppercase tracking-wider"
-                      >статьи</span
-                    >
-                    <span> •</span>
-                    <span class="text-mini font-medium text-[#808080]"
-                      >30.11.2022</span
-                    >
-                  </div>
-                  <p class="text-ordinary font-medium leading-5 mb-4">
-                    Эпик Лончер: Так блейд Инфинити Надо еще не баттлил!
-                  </p>
-                  <p class="text-ordinary leading-5">
-                    Пусковые установки Эпик Лончер подарят совершенно новый опыт
-                    запуска волчка на арену даже самому умелому Игроку!
-                  </p>
                 </div>
               </div>
             </swiper-slide>
@@ -169,15 +77,49 @@
 
 <script>
 import { Swiper, SwiperSlide } from "swiper/vue";
+import { ref } from "vue";
+import { Navigation } from "swiper/modules";
 
 import "swiper/css";
-import { ref } from "vue";
 import "swiper/css/navigation";
-import { Navigation } from "swiper/modules";
 export default {
   components: {
     Swiper,
     SwiperSlide,
+  },
+  data() {
+    return {
+      slides: [
+        {
+          image: "../../public/images/news/frame.jpg",
+          date: "30.11.2022",
+          title: "Эпик Лончер: Так блейд Инфинити Надо еще не баттлил!",
+          subtitle:
+            "Пусковые установки Эпик Лончер подарят совершенно новый опыт запуска волчка на арену даже самому умелому Игроку!",
+        },
+        {
+          image: "../../public/images/news/frameTwo.jpg",
+          date: "30.11.2022",
+          title: "Стань Мастером Высшей Лиги с блейдами СТАКИНГ!",
+          subtitle:
+            " Переходи на новый уровень блейд-баттла и докажи, что достоин звания Мастера Высшей лиги!",
+        },
+        {
+          image: "../../public/images/news/frameThree.jpg",
+          date: "30.11.2022",
+          title: "Новый закон накладывает вето на полуночный",
+          subtitle:
+            "Противоположная точка зрения подразумевает, что явные признаки победы институционализации лишь добавляют фракционных разногласий и объявлены нарушающими общечеловеческие нормы этики и морали.",
+        },
+        {
+          image: "../../public/images/news/frameThree.jpg",
+          date: "30.11.2022",
+          title: "Новый закон накладывает вето на полуночный",
+          subtitle:
+            "Противоположная точка зрения подразумевает, что явные признаки победы институционализации лишь добавляют фракционных разногласий и объявлены нарушающими общечеловеческие нормы этики и морали.",
+        },
+      ],
+    };
   },
   setup() {
     const prev = ref(null);
@@ -192,6 +134,58 @@ export default {
 </script>
 
 <style scoped>
+.news-wrapper {
+  @apply max-w-7xl mx-auto px-3 sm:px-6 2xl:px-0;
+}
+
+.news-container {
+  @apply pb-12 pt-12 sm:pt-[64px];
+}
+
+.row {
+  @apply flex justify-between items-center mb-6  sm:mb-10;
+}
+
+.row-item {
+  @apply flex items-end gap-x-[34px];
+}
+
+.watch-all {
+  @apply border-b-def border-black text-ordinary font-normal leading-5 hidden sm:flex;
+}
+.active {
+  @apply mt-2 flex sm:hidden;
+}
+.switches {
+  @apply flex gap-x-[44px] sm:gap-x-[54px];
+}
+
+.swiper-cards {
+  @apply flex-col text-left;
+}
+
+.test {
+  @apply pt-4 pr-3 pb-3 pl-3;
+}
+
+.box-text {
+  @apply flex items-center gap-x-2 mb-3;
+}
+
+.articles {
+  @apply text-mini font-medium uppercase tracking-wider;
+}
+.date {
+  @apply text-mini font-medium text-[#808080];
+}
+
+.punch-title {
+  @apply text-ordinary font-medium leading-5 mb-4;
+}
+
+.sub-title {
+  @apply text-mini leading-5 sm:text-ordinary font-normal;
+}
 .swiper {
   width: 100%;
   height: 100%;
@@ -203,6 +197,8 @@ export default {
 .swiper-button-next,
 .swiper-button-prev {
   position: relative;
+  width: 21.33px;
+  height: 20.74px;
 }
 .swiper-button-next::after {
   display: none;
@@ -215,13 +211,16 @@ export default {
   background: #fff;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: baseline;
 }
 
 .swiper-slide,
-.swiper-slide-active .swiper-slide-next {
-  max-width: 400px !important;
+.swiper-slide-active,
+.swiper-slide-next {
+  height: auto;
+  @apply border-r-def border-b-def border-l-def border-[#D9D9D9];
 }
+
 .swiper-slide img {
   display: block;
   width: 100%;

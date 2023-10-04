@@ -11,13 +11,6 @@ export default {
     borderWidth: {
       def: "1px",
     },
-    colors: {
-      gray: "#D9D9D9",
-      "text-gray": "#808080",
-    },
-    gap: {
-      34: "3rem",
-    },
   },
   plugins: [],
 };
